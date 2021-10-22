@@ -29,6 +29,12 @@ resource "aws_cloudfront_distribution" "distribution" {
     target_origin_id = local.bucket_name
     viewer_protocol_policy = "redirect-to-https"
     compress               = true
+    forwarded_values {
+      query_string = false
+      cookies {
+        forward = "none"
+      }
+    }
   }
 
   viewer_certificate {
